@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +11,14 @@ export class PostService {
     { 'id': '2', 'titre': "Deuxième post", 'contenu': 'détails deuxième post' },
     { 'id': '3', 'titre': "Troisième post", 'contenu': 'détails troisième post' },
   ];
-  getPosts() {
+/*  getPosts() {
     return this.postList;
   }
+*/
+  constructor(private http:HttpClient) { }
+  getPosts():Observable <any[]>
+  {return this.http.get<any[]>('http://localhost:3000/listpost')
+    ;}
+ 
 
-  constructor() { }
 }
